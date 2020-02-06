@@ -7,13 +7,14 @@ import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertThat;
 
 
-public class BibliotecaAppTest {
+public class MenuTest {
 
     @Test
-    public void shouldShowWelcomeMessage() {
+    public void shouldShowMainMenu() {
         final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
-        BibliotecaApp.main(null);
-        assertThat(outContent.toString(), containsString("Hello, you are welcome to Biblioteca!"));
+        Menu menu = new Menu();
+        menu.showMainMenu();
+        assertThat(outContent.toString(), containsString(menu.menuOptions));
     }
 }
