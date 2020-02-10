@@ -22,6 +22,6 @@ public class BibliotecaAppTest {
         final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         BibliotecaApp.showBookList();
-        assertEquals("[A, B]\n",outContent.toString());
+        assertEquals("Author: A - Year Published: 2015\n" + "Author: B - Year Published: 2019\n",outContent.toString());
     }
 }

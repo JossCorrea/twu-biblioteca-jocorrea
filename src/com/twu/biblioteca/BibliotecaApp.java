@@ -22,8 +22,9 @@ public class BibliotecaApp {
 
     public static void showBookList(){
         List bookList = new ArrayList();
-        bookList.add("A");
-        bookList.add("B");
-        System.out.println(bookList);
+        bookList.add(new Book("A",2015));
+        bookList.add(new Book("B",2019));
+
+        bookList.forEach((book) -> System.out.println(book.toString()));
     }
 }
