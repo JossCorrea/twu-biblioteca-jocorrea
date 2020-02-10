@@ -4,6 +4,7 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 
 public class BibliotecaAppTest {
@@ -13,6 +14,14 @@ public class BibliotecaAppTest {
         final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         BibliotecaApp.showWelcomeMessage();
-        assertEquals("Hello, you are welcome to Biblioteca!\n",outContent.toString());
+        assertEquals("Welcome to Biblioteca. Your one-stop-shop for great book in Bangalore!\n",outContent.toString());
+    }
+
+    @Test
+    public void shouldShowListOfBooks() {
+        final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        BibliotecaApp.showBookList();
+        assertEquals("[A, B]\n",outContent.toString());
     }
 }
