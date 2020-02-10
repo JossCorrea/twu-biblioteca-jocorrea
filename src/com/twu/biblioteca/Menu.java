@@ -5,9 +5,7 @@ import java.util.Scanner;
 
 public class Menu {
     String menuOptions = "" +
-            "1 - Option 1\n" +
-            "2 - Option 2\n" +
-            "3 - Option 3\n";
+            "1 - List of books\n";
     String selectedOption;
 
 
@@ -16,9 +14,14 @@ public class Menu {
     }
 
     public void selectOption() {
-        System.out.print("Enter your choice:");
+        System.out.println("Enter the number of your choice:");
         Scanner scan = new Scanner(System.in);
         this.selectedOption = scan.next();
+        if(selectedOption.contentEquals("1")){
+            Library.showBookList();
+        }else{
+            System.out.println("Please select a valid option!");
+        }
     }
 
 
