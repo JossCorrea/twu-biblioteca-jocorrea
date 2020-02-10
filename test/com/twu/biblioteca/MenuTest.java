@@ -22,16 +22,6 @@ public class MenuTest {
     }
 
     @Test
-    public void selectOptionMustBe1WhenUserSelect1() {
-        String data = "1";
-        final ByteArrayInputStream inputContent = new ByteArrayInputStream(data.getBytes());
-        System.setIn(inputContent);
-        Menu menu = new Menu();
-        menu.selectOption();
-        assertEquals(data, menu.selectedOption);
-    }
-
-    @Test
     public void shouldShowMenuWhenSelectedOptionIs1() {
         String data = "1";
         final ByteArrayInputStream inputContent = new ByteArrayInputStream(data.getBytes());
@@ -44,8 +34,8 @@ public class MenuTest {
     }
 
     @Test
-    public void shouldShowMessageWhenChooseInvalidOption() {
-        String data = "2";
+    public void shouldShowMessageWhenSelectInvalidOption() {
+        String data = "3";
         final ByteArrayInputStream inputContent = new ByteArrayInputStream(data.getBytes());
         System.setIn(inputContent);
         final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -53,6 +43,16 @@ public class MenuTest {
         Menu menu = new Menu();
         menu.selectOption();
         assertEquals("Enter the number of your choice:\nPlease select a valid option!\n", outContent.toString());
+    }
+
+    @Test
+    public void shouldQuitWhenSelectOption2() {
+        String data = "2";
+        final ByteArrayInputStream inputContent = new ByteArrayInputStream(data.getBytes());
+        System.setIn(inputContent);
+        Menu menu = new Menu();
+        menu.selectOption();
+        assertEquals(false, BibliotecaApp.isIsActivated());
     }
 
 }

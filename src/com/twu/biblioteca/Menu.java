@@ -5,7 +5,8 @@ import java.util.Scanner;
 
 public class Menu {
     String menuOptions = "" +
-            "1 - List of books\n";
+            "1 - List of books\n"+
+            "2 - Quit";
     String selectedOption;
 
 
@@ -19,6 +20,8 @@ public class Menu {
         this.selectedOption = scan.next();
         if(selectedOption.contentEquals("1")){
             Library.showBookList();
+        }else if(selectedOption.contentEquals("2")){
+            BibliotecaApp.quitApp();
         }else{
             System.out.println("Please select a valid option!");
         }
