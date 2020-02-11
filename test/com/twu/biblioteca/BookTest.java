@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 public class BookTest {
 
     @Test
-    public void shouldTurnIsAvaibleFalse() {
+    public void shouldTurnIsAvailableFalse() {
         Book book = new Book("Book test",2020);
         book.checkOutBook();
 
@@ -26,6 +26,17 @@ public class BookTest {
         book.checkOutBook();
 
         assertEquals("Thank you! Enjoy the book\n",outContent.toString());
+    }
 
+    @Test
+    public void shouldShowUnSuccessfulMessageWhenCheckOutBook() {
+        final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        Book book = new Book("Book test", 2020);
+        book.isAvailable = false;
+        book.checkOutBook();
+
+        assertEquals("Sorry, that book is not available\n", outContent.toString());
     }
 }
