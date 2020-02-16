@@ -3,55 +3,62 @@ package com.twu.biblioteca;
 import java.util.Scanner;
 
 public class Menu {
-    String menuOptions = "----------------------------------------------------------------------------------\n"+
-            "MAIN MENU :\n" +
-            "\n"+
-            "1 - List of books\n"+
-            "2 - Checkout book\n"+
-            "3 - Return book\n"+
+    String menuOptions = "----------------------------------------------------------------------------------\n" +
+            "MAIN MENU :\n\n" +
+            "1 - List of books\n" +
+            "2 - Checkout book\n" +
+            "3 - Return book\n" +
             "4 - Quit";
-    String selectedOption;
+    int selectedOption;
 
 
-    public void showMainMenu(){
+    public void showMainMenu() {
         System.out.println(menuOptions);
     }
 
     public void selectOption() {
-        System.out.print("----------------------------------------------------------------------------------\n"+
-                         "Enter the number of your option in menu ----> ");
+        System.out.print("----------------------------------------------------------------------------------\n" +
+                "Enter the number of your option in menu ----> ");
         Scanner scan = new Scanner(System.in);
-        this.selectedOption = scan.next();
-        if(selectedOption.contentEquals("1")){
-            Library.showBookList();
-        }else if(selectedOption.contentEquals("2")){
-            Library.showBookList();
-            Book selectedBook = selectBook();
-            selectedBook.checkoutBook();
-        }else if(selectedOption.contentEquals("3")) {
-            Library.showCheckoutBookList();
-            Book selectedBook = selectBook();
-            selectedBook.returnBook();
-        } else if(selectedOption.contentEquals("4")){
-            BibliotecaApp.quitApp();
-        }else{
-            System.out.println("Please select a valid option!");
+        this.selectedOption = Integer.parseInt(scan.next());
+        Book selectedBook = null;
+
+        switch (this.selectedOption) {
+            case 1:
+                Library.showBookList();
+                break;
+            case 2:
+                Library.showBookList();
+                selectedBook = selectBook();
+                selectedBook.checkoutBook();
+                break;
+            case 3:
+                Library.showCheckoutBookList();
+                selectedBook = selectBook();
+                selectedBook.returnBook();
+                break;
+            case 4:
+                BibliotecaApp.quitApp();
+                break;
+            default:
+                System.out.println("Please select a valid option!");
         }
         System.out.println(menuOptions);
 
     }
-        private Book selectBook(){
-            System.out.print("----------------------------------------------------------------------------------\n"+
-                    "Enter the id number of the book ----> ");
-            Scanner selectedIdBook = new Scanner(System.in);
-            int bookId = Integer.parseInt(selectedIdBook.next());
-            for (Book  book : Library.bookList) {
-                if (book.getId() == bookId) {
-                    return book;
-                }
+
+    private Book selectBook() {
+        System.out.print("----------------------------------------------------------------------------------\n" +
+                "Enter the id number of the book ----> ");
+        Scanner selectedIdBook = new Scanner(System.in);
+        int bookId = Integer.parseInt(selectedIdBook.next());
+        for (Book book : Library.bookList) {
+            if (book.getId() == bookId) {
+                return book;
+            }
         }
-            return null;
-        }
+        return null;
+    }
 
 //        try{
 //            while(yes==0){

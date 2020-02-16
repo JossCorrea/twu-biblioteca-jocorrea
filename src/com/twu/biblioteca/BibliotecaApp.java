@@ -25,6 +25,7 @@ public class BibliotecaApp {
 
     public static void quitApp(){
         isActivated = false;
+        System.exit(0);
     }
 
 }

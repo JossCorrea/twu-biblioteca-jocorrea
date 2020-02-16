@@ -11,14 +11,22 @@ public class Library{
         System.out.println( "----------------------------------------------------------------------------------\n"+
                 "BOOK LIST : \n");
         Predicate<Book> booksAvailable = book -> book.isAvailable();
-        bookList.stream().filter((booksAvailable)).forEach((book) -> System.out.println(book.toString()));
+        if (bookList.stream().filter((booksAvailable)).count()>0) {
+            bookList.stream().filter((booksAvailable)).forEach((book) -> System.out.println(book.toString()));
+        }else {
+            System.out.println("There is no book available to checkout");
+        }
     }
 
     public static void showCheckoutBookList(){
         System.out.println( "----------------------------------------------------------------------------------\n"+
                 "BOOK LIST - RETURN AVAILABLE : \n");
         Predicate<Book> booksNotAvailable = book -> book.isAvailable() == false;
-        bookList.stream().filter((booksNotAvailable)).forEach((book) -> System.out.println(book.toString()));
+        if (bookList.stream().filter((booksNotAvailable)).count()>0) {
+            bookList.stream().filter((booksNotAvailable)).forEach((book) -> System.out.println(book.toString()));
+        }else {
+            System.out.println("There is no book available to return");
+        }
     }
 
     public static void loadDataBooklist(){
