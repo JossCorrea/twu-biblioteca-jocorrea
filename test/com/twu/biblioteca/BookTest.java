@@ -1,14 +1,14 @@
 package com.twu.biblioteca;
 
 import org.junit.Test;
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
+import static com.twu.biblioteca.Constants.*;
 import static org.junit.Assert.*;
 
-public class BookTest {
 
+public class BookTest {
 
     @Test
     public void shouldTurnIsAvailableFalseWhenCheckout() {
@@ -26,7 +26,7 @@ public class BookTest {
         Book book = new Book("Book test",2020);
         book.checkoutBook();
 
-        assertEquals("Thank you! Enjoy the book\n",outContent.toString());
+        assertEquals(CHECKOUT_SUCCESS_MESSAGE + "\n",outContent.toString());
     }
 
     @Test
@@ -39,7 +39,7 @@ public class BookTest {
 
         book.checkoutBook();
 
-        assertEquals("Sorry, that book is not available\n", outContent.toString());
+        assertEquals(CHECKOUT_UNSUCCESSFUL_MESSAGE + "\n", outContent.toString());
     }
 
     @Test
@@ -61,7 +61,7 @@ public class BookTest {
 
         book.returnBook();
 
-        assertEquals("Thank you for returning the book\n",outContent.toString());
+        assertEquals( RETURN_SUCCESS_MESSAGE + "\n",outContent.toString());
     }
 
     @Test
@@ -72,7 +72,7 @@ public class BookTest {
         Book book = new Book("Book test", 2020);
         book.returnBook();
 
-        assertEquals("That is not a valid book to return\n", outContent.toString());
+        assertEquals(RETURN_UNSUCCESSFUL_MESSAGE + "\n", outContent.toString());
     }
 
 }

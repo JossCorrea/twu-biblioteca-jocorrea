@@ -4,7 +4,7 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+import static com.twu.biblioteca.Constants.WELCOME_MESSAGE;
 
 
 public class BibliotecaAppTest {
@@ -14,6 +14,7 @@ public class BibliotecaAppTest {
         final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         BibliotecaApp.showWelcomeMessage();
-        assertEquals("Welcome to Biblioteca. Your one-stop-shop for great book in Bangalore!\n",outContent.toString());
+        assertEquals(WELCOME_MESSAGE + "\n",outContent.toString());
     }
 }
+// Kudos to Marcio and Matheus

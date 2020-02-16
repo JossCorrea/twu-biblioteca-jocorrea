@@ -52,7 +52,7 @@ public class MenuTest {
         System.setIn(inputContent);
         Menu menu = new Menu();
         menu.selectOption();
-        assertEquals(false, BibliotecaApp.isIsActivated());
+        assertEquals(false, BibliotecaApp.isActivated);
     }
 
 }

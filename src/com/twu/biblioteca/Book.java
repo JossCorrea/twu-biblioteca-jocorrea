@@ -1,8 +1,16 @@
 package com.twu.biblioteca;
 
-import org.jetbrains.annotations.NotNull;
+
+import static com.twu.biblioteca.Constants.*;
 
 public class Book {
+    private static int createdBooks = 0;
+
+    public int getId() {
+        return id;
+    }
+
+    private int id;
     private String author;
     private int yearPublished;
     private boolean isAvailable = true;
@@ -10,11 +18,13 @@ public class Book {
     public Book(String author, int yearPublished) {
         this.author = author;
         this.yearPublished = yearPublished;
+        this.createdBooks++;
+        this.id = createdBooks;
     }
 
     @Override
     public String toString() {
-        return author + " - " + yearPublished ;
+        return id + " -  " + author + " - " + yearPublished ;
     }
 
     public boolean isAvailable() {
@@ -24,18 +34,18 @@ public class Book {
     public void checkoutBook() {
         if (this.isAvailable) {
             this.isAvailable = false;
-            System.out.println("Thank you! Enjoy the book");
+            System.out.println(CHECKOUT_SUCCESS_MESSAGE);
         } else {
-            System.out.println("Sorry, that book is not available");
+            System.out.println(CHECKOUT_UNSUCCESSFUL_MESSAGE);
         }
     }
 
     public void returnBook() {
         if (this.isAvailable) {
-            System.out.println("That is not a valid book to return");
+            System.out.println(RETURN_UNSUCCESSFUL_MESSAGE);
         } else {
             this.isAvailable = true;
-            System.out.println("Thank you for returning the book");
+            System.out.println(RETURN_SUCCESS_MESSAGE);
         }
     }
 }

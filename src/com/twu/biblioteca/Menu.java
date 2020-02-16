@@ -1,12 +1,15 @@
 package com.twu.biblioteca;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
-    String menuOptions = "" +
+    String menuOptions = "----------------------------------------------------------------------------------\n"+
+            "MAIN MENU :\n" +
+            "\n"+
             "1 - List of books\n"+
-            "2 - Quit";
+            "2 - Checkout book\n"+
+            "3 - Return book\n"+
+            "4 - Quit";
     String selectedOption;
 
 
@@ -15,18 +18,40 @@ public class Menu {
     }
 
     public void selectOption() {
-        System.out.println("Enter the number of your choice:");
+        System.out.print("----------------------------------------------------------------------------------\n"+
+                         "Enter the number of your option in menu ----> ");
         Scanner scan = new Scanner(System.in);
         this.selectedOption = scan.next();
         if(selectedOption.contentEquals("1")){
             Library.showBookList();
         }else if(selectedOption.contentEquals("2")){
+            Library.showBookList();
+            Book selectedBook = selectBook();
+            selectedBook.checkoutBook();
+        }else if(selectedOption.contentEquals("3")) {
+            Library.showCheckoutBookList();
+            Book selectedBook = selectBook();
+            selectedBook.returnBook();
+        } else if(selectedOption.contentEquals("4")){
             BibliotecaApp.quitApp();
         }else{
             System.out.println("Please select a valid option!");
         }
-    }
+        System.out.println(menuOptions);
 
+    }
+        private Book selectBook(){
+            System.out.print("----------------------------------------------------------------------------------\n"+
+                    "Enter the id number of the book ----> ");
+            Scanner selectedIdBook = new Scanner(System.in);
+            int bookId = Integer.parseInt(selectedIdBook.next());
+            for (Book  book : Library.bookList) {
+                if (book.getId() == bookId) {
+                    return book;
+                }
+        }
+            return null;
+        }
 
 //        try{
 //            while(yes==0){
@@ -76,16 +101,6 @@ public class Menu {
 //                    case 7: System.exit(0);
 //
 //                    default: System.out.println("Invalid choice!");
-//
-//                }
-//
-//                mylist.temp=null;//clean temp variable
-//                System.out.print("Continue? Press 0 to continue:");
-//                yes=sc.nextInt();
-//
-//            }
-//
-//        }catch(Exception e){System.exit(100);}
 
 
 }
